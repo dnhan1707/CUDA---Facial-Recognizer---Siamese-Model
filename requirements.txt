@@ -1,0 +1,10 @@
+# Framework
+fastapi
+uvicorn
+pydantic
+
+# ML packages
+opencv-python
+tensorflow
+numpy
+matplotlib

@@ -1,0 +1,42 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+env/
+venv/
+facial_env/
+deeplearningsiamesemodel/
+.brandmatch_proj/
+*.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# Logs and debug
+*.log
+
+# Data and output
+data/
+*.h5
+*.ckpt
+*.pb
+*.tflite
+*.jpg
+*.png
+*.jpeg
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Model files
+*.h5
+*.pth
+*.pt
+saved_model/
+__pycache__/
