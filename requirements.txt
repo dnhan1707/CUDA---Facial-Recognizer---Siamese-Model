@@ -3,6 +3,12 @@ fastapi
 uvicorn
 pydantic
 
+# Database
+supabase
+
+# AWS S3
+boto3
+
 # ML packages
 opencv-python
 tensorflow
