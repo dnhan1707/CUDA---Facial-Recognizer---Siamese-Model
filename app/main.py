@@ -1,6 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from app.schema.user import User
+from typing import List
+from controller.image_controller import ImageController
 
+image_controller = ImageController()
 
 def create_application() -> FastAPI:
     app = FastAPI(
@@ -14,8 +17,16 @@ def create_application() -> FastAPI:
         }
 
     @app.post("/upload")
-    async def upload_image(user: User):
-        pass
+    async def upload_image(
+        folder: str,
+        user_id: str,
+        files: List[UploadFile] = File(...)
+    ):
+        try:
+            return image_controller.upload_images(files, folder, user_id)
+        except Exception as e:
+            return e
+
 
     @app.post("/train")
     async def train_model(user: User):
