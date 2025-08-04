@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from app.schema.user import User
-from typing import List
-from controller.image_controller import ImageController
+from typing import List, Literal
+from app.controller.image_controller import ImageController
 
 image_controller = ImageController()
 
@@ -18,8 +18,8 @@ def create_application() -> FastAPI:
 
     @app.post("/upload")
     async def upload_image(
-        folder: str,
-        user_id: str,
+        folder: Literal["anchor", "positive"],
+        user_id: str = "",
         files: List[UploadFile] = File(...)
     ):
         try:

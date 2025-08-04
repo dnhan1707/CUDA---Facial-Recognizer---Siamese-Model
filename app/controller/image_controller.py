@@ -23,16 +23,29 @@ class ImageController():
                 user_id = str(uuid.uuid4())
             
             for file in files:
-                s3_key = f"{folder}/{user_id}/{file.file_name}"
+                s3_key = f"{folder}/{user_id}/{file.filename}"
                 self.s3_client.upload_fileobj(file.file, self.AWS_BUCKET_NAME, s3_key)
 
             return user_id
         
         except Exception as e:
-            return e
-        
+            return str(e)  # Optionally, convert exception to string for clearer error
     
-    def get_images():
-        pass
+    def get_images(self, folder: str, user_id: str):
+        try:
+            prefix = f"{folder}/{user_id}/"
+            response = self.s3_client.list_objects_v2(
+                Bucket=self.AWS_BUCKET_NAME,
+                Prefix=prefix
+            )
+            image_urls = []
+            for obj in response.get("Contents", []):
+                key = obj["Key"]
+                url = f"https://{self.AWS_BUCKET_NAME}.s3.amazonaws.com/{key}"
+                image_urls.append(url)
+            return image_urls
+
+        except Exception as e:
+            return e
 
 
